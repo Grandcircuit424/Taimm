@@ -28,8 +28,7 @@ public class Zombie : Enemy, IDamageable
         RB.velocity = Vector3.zero;
         RB.angularVelocity = 0f;
 
-        HealthBar.transform.rotation = Camera.main.transform.rotation;
-        HealthBar.transform.position = Target.transform.position;
+        CenterHealth();
 
         if (EnemysTarget == null)
         {

@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
     {
         Destroy(gameObject);
         IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
-        if (damageable != null )
+        if (damageable != null && collision.gameObject.tag != "Airplane")
         {
             damageable.Damage(Damage);
         }

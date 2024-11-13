@@ -8,6 +8,9 @@ public class Airplane : MonoBehaviour
     public static Airplane Instance;
 
     [SerializeField]
+    public float MaxHealth;
+
+    [SerializeField]
     public float Health;
 
     void Awake()
@@ -18,8 +21,10 @@ public class Airplane : MonoBehaviour
     public void DamagePlane(float Damage)
     {
         Health -= Damage;
+        UIManager.Instance.ChangeAirplanesHealthBar(Health, MaxHealth);
         if (Health <= 0)
         {
+            
             GameManager.Instance.UpdateGameState(GameManager.GameState.Lose);
         }
     }

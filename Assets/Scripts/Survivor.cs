@@ -24,7 +24,8 @@ public class Survivor : NPC, IDamageable
     void Update()
     {
         RB.velocity = Vector3.zero;
-        
+
+        CenterHealth();
 
         Vector2 lookdir = door.transform.position - transform.position;
 

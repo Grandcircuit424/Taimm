@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField]
+    GameObject EnemysFolder;
+
     public static GameManager Instance;
 
     public  GameState State;
@@ -29,28 +32,35 @@ public class GameManager : MonoBehaviour
         {
             case GameState.SetUp:
                 break;
+            case GameState.Intermission:
+                break;
             case GameState.Wave:
                 break;
             case GameState.End:
-                StartCoroutine(WaitWave());
+                StartCoroutine(WaitingForEnd());
                 break;
             case GameState.Lose:
                 UIManager.Instance.GameOver();
                 break;
+            
         }
 
         onGameStateChange?.Invoke(newState);
     }
 
-    IEnumerator WaitWave()
+    IEnumerator WaitingForEnd()
     {
-        yield return new WaitForSeconds(20f);
-        UpdateGameState(GameState.SetUp);
+        while (EnemysFolder.transform.childCount != 0)
+        { 
+            yield return new WaitForSeconds(1f);
+        }
+        UpdateGameState(GameState.Intermission);
     }
 
     public enum GameState
     {
         SetUp,
+        Intermission,
         Wave,
         Lose,
         End

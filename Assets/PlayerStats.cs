@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour, IDamageable
 {
+    public static PlayerStats Instance;
+
     [SerializeField]
     float health;
+    [SerializeField]
+    float Money;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     public void Damage(float Damage)
     {

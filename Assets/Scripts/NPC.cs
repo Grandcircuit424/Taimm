@@ -25,10 +25,6 @@ public class NPC : MonoBehaviour, IDamageable
     [SerializeReference]
     protected Transform Target;
 
-
-
-    //[SerializeReference]
-    //protected State CurrentSate = State.Neutral;
     [SerializeField]
     public float SpawnWeight;
     [SerializeField]
@@ -37,6 +33,7 @@ public class NPC : MonoBehaviour, IDamageable
     private void UpdateHealthBar()
     {
         HealthMeter.fillAmount = Health / MaxHealth;
+        HealthMeter.color = Color.Lerp(Color.red, Color.green, Health / MaxHealth);
     }
 
     public void Damage(float Damage)
@@ -53,5 +50,11 @@ public class NPC : MonoBehaviour, IDamageable
     private void Update()
     {
         HealthBar.transform.rotation = Camera.main.transform.rotation;
+    }
+
+    protected void CenterHealth()
+    {
+        HealthBar.transform.rotation = Camera.main.transform.rotation;
+        HealthBar.transform.position = Target.transform.position;
     }
 }

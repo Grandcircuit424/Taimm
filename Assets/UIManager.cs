@@ -19,6 +19,8 @@ public class UIManager : MonoBehaviour
     TextMeshProUGUI GameOverScreen;
     [SerializeField]
     Image HealthBar;
+    [SerializeField]
+    Image AirplanesHealthBar;
 
     [SerializeField]
     int SurvivorCount = 0;
@@ -56,5 +58,11 @@ public class UIManager : MonoBehaviour
     public void ChangeHealthBar(float Health)
     {
         HealthBar.fillAmount = Health / 50f;
+    }
+
+    public void ChangeAirplanesHealthBar(float CurrentHealth, float MaxHealth)
+    {
+        AirplanesHealthBar.fillAmount = CurrentHealth / MaxHealth;
+        AirplanesHealthBar.color = Color.Lerp(Color.red, Color.green, CurrentHealth / MaxHealth);
     }
 }
