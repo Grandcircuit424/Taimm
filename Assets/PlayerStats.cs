@@ -12,10 +12,14 @@ public class PlayerStats : MonoBehaviour, IDamageable
     public float health;
     [SerializeField]
     public float Money;
+    [SerializeField]
+    public float BulletDamage;
 
     private void Awake()
     {
         Instance = this;
+        Money = 100;
+        BulletDamage = 3;
     }
 
     public void Damage(float Damage)
@@ -35,7 +39,18 @@ public class PlayerStats : MonoBehaviour, IDamageable
 
     public void Heal()
     {
-
         health = Maxhealth;
+        UIManager.Instance.ChangeHealthBar(health);
+    }
+
+    public void IncreaseHealthAmmount()
+    {
+        Maxhealth += 25;
+        Heal();
+    }
+
+    public void IncreaseAmmoDamager()
+    {
+        BulletDamage += 3;
     }
 }

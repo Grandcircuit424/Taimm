@@ -34,11 +34,12 @@ public class UIManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        ChangeHealthBar(PlayerStats.Instance.health);
     }
 
     public void ChangeWaveCounter(int Wave)
     {
-        WaveCounter.text = "Wave: " + Wave;
+        WaveCounter.text = "Day " + Wave;
     }
 
     public void ChangeSurvivorCounter()
@@ -79,4 +80,9 @@ public class UIManager : MonoBehaviour
         ShopMenu.SetActive(false);
     }
 
+    public void EndOfShop()
+    {
+        ShopMenuOff();
+        GameManager.Instance.UpdateGameState(GameManager.GameState.SetUp);
+    }
 }

@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        UpdateGameState(GameState.Intermission);
+        UpdateGameState(GameState.SetUp);
     }
 
     public void UpdateGameState(GameState newState)
@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
             case GameState.SetUp:
                 playerMovementScript.enabled = true;
                 shootingScript.enabled = true;
+                Airplane.Instance.HealPlane();
                 break;
             case GameState.Intermission:
                 UIManager.Instance.ShopMenuOn();

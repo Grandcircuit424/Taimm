@@ -7,11 +7,18 @@ using UnityEngine.UI;
 public class ShopManager : MonoBehaviour
 {
     [SerializeField]
-    TextMeshProUGUI Repairprice;
+    TextMeshProUGUI RepairPriceText;
     [SerializeField]
     Button RepairB;
     [SerializeField]
     float RepairPrice;
+    [SerializeField]
+    TextMeshProUGUI CurrencyAmmount;
+
+    private void Awake()
+    {
+        CurrencyUpdate();
+    }
 
     private void OnEnable()
     {   
@@ -19,28 +26,54 @@ public class ShopManager : MonoBehaviour
         {
             RepairB.interactable = true;
             RepairPrice = (PlayerStats.Instance.Maxhealth - PlayerStats.Instance.health) * 2;
-            Repairprice.text = "$" + RepairPrice.ToString();
+            RepairPriceText.text = "$" + RepairPrice.ToString();
         } else
         {
             RepairB.interactable = false;
-            Repairprice.text = "$" + 0;
+            RepairPriceText.text = "$" + 0;
         }
+    }
+
+    private void CurrencyUpdate()
+    {
+        CurrencyAmmount.text = "$"+PlayerStats.Instance.Money.ToString();
     }
 
     private void UpdateAfterPurchase()
     {
-        Repairprice.text = "$" + 0;
+        RepairPriceText.text = "$" + 0;
         RepairB.interactable = false;
+        CurrencyUpdate();
     }
 
-    private void RepairButton()
+    public void RepairButton()
     {
         if (RepairPrice <= PlayerStats.Instance.Money)
         {
             PlayerStats.Instance.SpendMoney(RepairPrice);
             PlayerStats.Instance.Heal();
-            PlayerStats.Instance.Money -= RepairPrice;
             UpdateAfterPurchase();
+        }
+    }
+
+    public void ImprovedArmor()
+    {
+        if (PlayerStats.Instance.Money >= 50f)
+        {
+            PlayerStats.Instance.SpendMoney(50f);
+            PlayerStats.Instance.IncreaseHealthAmmount();
+            UpdateAfterPurchase();
+            CurrencyUpdate();
+        }
+    }
+
+    public void ImprovedAmmo()
+    {
+        if (PlayerStats.Instance.Money >= 50f)
+        {
+            PlayerStats.Instance.SpendMoney(50f);
+            PlayerStats.Instance.IncreaseAmmoDamager();
+            CurrencyUpdate();
         }
     }
 }

@@ -24,8 +24,12 @@ public class Airplane : MonoBehaviour
         UIManager.Instance.ChangeAirplanesHealthBar(Health, MaxHealth);
         if (Health <= 0)
         {
-            
             GameManager.Instance.UpdateGameState(GameManager.GameState.Lose);
         }
+    }
+
+    public void HealPlane()
+    {
+        Health = MaxHealth;
     }
 }
