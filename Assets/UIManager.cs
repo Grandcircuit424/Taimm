@@ -23,6 +23,9 @@ public class UIManager : MonoBehaviour
     Image AirplanesHealthBar;
 
     [SerializeField]
+    GameObject ShopMenu;
+
+    [SerializeField]
     int SurvivorCount = 0;
 
     [SerializeField]
@@ -65,4 +68,15 @@ public class UIManager : MonoBehaviour
         AirplanesHealthBar.fillAmount = CurrentHealth / MaxHealth;
         AirplanesHealthBar.color = Color.Lerp(Color.red, Color.green, CurrentHealth / MaxHealth);
     }
+
+    public void ShopMenuOn()
+    {
+        ShopMenu.SetActive(true);
+    }
+
+    public void ShopMenuOff() 
+    {
+        ShopMenu.SetActive(false);
+    }
+
 }

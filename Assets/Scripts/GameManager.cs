@@ -8,6 +8,12 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject EnemysFolder;
 
+    [SerializeField]
+    Playermovement playerMovementScript;
+
+    [SerializeField]
+    Shooting shootingScript;
+
     public static GameManager Instance;
 
     public  GameState State;
@@ -21,18 +27,23 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        UpdateGameState(GameState.SetUp);
+        UpdateGameState(GameState.Intermission);
     }
 
-    public  void UpdateGameState(GameState newState)
+    public void UpdateGameState(GameState newState)
     {
         State = newState;
 
         switch (newState)
         {
             case GameState.SetUp:
+                playerMovementScript.enabled = true;
+                shootingScript.enabled = true;
                 break;
             case GameState.Intermission:
+                UIManager.Instance.ShopMenuOn();
+                playerMovementScript.enabled = false;
+                shootingScript.enabled = false;
                 break;
             case GameState.Wave:
                 break;

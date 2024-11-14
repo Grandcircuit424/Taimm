@@ -7,9 +7,11 @@ public class PlayerStats : MonoBehaviour, IDamageable
     public static PlayerStats Instance;
 
     [SerializeField]
-    float health;
+    public float Maxhealth;
     [SerializeField]
-    float Money;
+    public float health;
+    [SerializeField]
+    public float Money;
 
     private void Awake()
     {
@@ -24,5 +26,16 @@ public class PlayerStats : MonoBehaviour, IDamageable
         {
             GameManager.Instance.UpdateGameState(GameManager.GameState.Lose);
         }
+    }
+
+    public void SpendMoney(float Amountspent)
+    {
+        Money -= Amountspent;
+    }
+
+    public void Heal()
+    {
+
+        health = Maxhealth;
     }
 }
