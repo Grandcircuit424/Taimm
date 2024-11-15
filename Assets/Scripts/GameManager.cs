@@ -50,9 +50,13 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.End:
                 StartCoroutine(WaitingForEnd());
+                
                 break;
             case GameState.Lose:
                 UIManager.Instance.GameOver();
+                Time.timeScale = 0f;
+                playerMovementScript.enabled = false;
+                shootingScript.enabled = false;
                 break;
             
         }

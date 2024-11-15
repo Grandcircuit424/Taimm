@@ -36,7 +36,7 @@ public class NPC : MonoBehaviour, IDamageable
         HealthMeter.color = Color.Lerp(Color.red, Color.green, Health / MaxHealth);
     }
 
-    public void Damage(float Damage)
+    public virtual void Damage(float Damage)
     {
         Health -= Damage;
         UpdateHealthBar();

@@ -37,6 +37,11 @@ public class PlayerStats : MonoBehaviour, IDamageable
         Money -= Amountspent;
     }
 
+    public void GiveMoney(float GiveMoney)
+    {
+
+    }
+
     public void Heal()
     {
         health = Maxhealth;

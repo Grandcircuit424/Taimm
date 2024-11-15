@@ -11,6 +11,9 @@ public class Zombie : Enemy, IDamageable
     GameObject EnemysTarget;
 
     [SerializeField]
+    int MoneyEarned;
+
+    [SerializeField]
     Rigidbody2D RB;
 
     bool Attacked = false;
@@ -113,5 +116,11 @@ public class Zombie : Enemy, IDamageable
         {
             StartCoroutine(FindTarget());
         }
+    }
+
+    public override void Damage(float Damage)
+    {
+        base.Damage(Damage);
+
     }
 }
