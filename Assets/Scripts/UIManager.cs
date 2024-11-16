@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -40,6 +41,17 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     int KillCount = 0;
 
+    [SerializeField]
+    GameObject Overlay;
+
+    [SerializeField]
+    GameObject WinScreen;
+
+    [SerializeField]
+    TextMeshProUGUI FinalKillCount;
+    [SerializeField]
+    TextMeshProUGUI FinalSurvivorCount;
+
     void Awake()
     {
         Instance = this;
@@ -67,7 +79,18 @@ public class UIManager : MonoBehaviour
             case (GameManager.GameState.Lose):
                 GameOver();
                 break;
+            case (GameManager.GameState.Win):
+                SetWinScreen();
+                break;
         }
+    }
+
+    public void SetWinScreen()
+    {
+        WinScreen.SetActive(true);
+        Overlay.SetActive(false);
+        FinalSurvivorCount.text = "Total Of Survivors Saved: " + SurvivorCount;
+        FinalKillCount.text = "Total Of Zombies Killed: " + KillCount;
     }
 
     public void ChangeWaveCounter(int Wave)

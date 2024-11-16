@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
-    public int Round;
+    public int Round = 1;
 
     public  GameState State;
 
@@ -25,12 +25,12 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        Round = 1;
     }
 
     private void Start()
     {
-        UpdateGameState(GameState.SetUp);
+        UpdateGameState(GameState.Win);
+
     }
 
     public void UpdateGameState(GameState newState)
@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
         switch (newState)
         {
             case GameState.SetUp:
+                Time.timeScale = 1f;
                 playerMovementScript.enabled = true;
                 shootingScript.enabled = true;
                 break;
