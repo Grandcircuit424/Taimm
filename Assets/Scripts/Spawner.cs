@@ -66,7 +66,7 @@ public class Spawner : MonoBehaviour
 
     private int GradIncrease()
     {
-        return System.Convert.ToInt32(Mathf.Floor(2.0f*Mathf.Sqrt(GameManager.Instance.Round)));
+        return System.Convert.ToInt32(Mathf.Sqrt(GameManager.Instance.Round));
     }
 
     // Update is called once per frame
@@ -80,7 +80,7 @@ public class Spawner : MonoBehaviour
                 nextSpawn = Time.time + 1.4f-Mathf.Clamp((GameManager.Instance.Round*.05f), .5f, 999);
                 randX = Random.Range(-20, 20);
                 randY = Random.Range(0, 10);
-                if (Wave[0].tag == "Survivor") randY -= 5;
+                if (Wave[0].tag == "Survivor") randY -= 10;
                 SpawnLocation = new Vector2(randX, gameObject.transform.position.y + randY);
                 NPC SpawnedBeing = Instantiate(Wave[0], SpawnLocation, Quaternion.identity);
                 SpawnedBeing.transform.parent = EnemyFolder.gameObject.transform;

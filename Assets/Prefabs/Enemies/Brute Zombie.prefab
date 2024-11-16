@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7924366299806624806}
   - component: {fileID: 7111479778613286018}
   - component: {fileID: 777979289879662761}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 5662243093248592770}
   - component: {fileID: 8655507227824020262}
   - component: {fileID: 7898755151270077471}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 1739974505306220720}
   - component: {fileID: 8591237423382413562}
   - component: {fileID: 2619980334896427240}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Brute Zombie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +255,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 51a08d86596348b48b5f8cf44741598f, type: 3}
   m_Color: {r: 0.12548949, g: 0.18867922, b: 0.13391478, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -355,7 +355,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 3, y: 3}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -375,7 +375,7 @@ GameObject:
   - component: {fileID: 4851976941098698961}
   - component: {fileID: 2056650663587376493}
   - component: {fileID: 2950814084092540297}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}

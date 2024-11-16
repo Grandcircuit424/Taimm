@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1870320276834434060}
   - component: {fileID: 6544441479227927849}
   - component: {fileID: 5354087405409129017}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Quick Zombie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 28b3b927121ac7c439d999fe753ad5b7, type: 3}
   m_Color: {r: 0.56470275, g: 0.8867924, b: 0.68920386, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -177,7 +177,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 3, y: 3}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 5702875395670225209}
   - component: {fileID: 1157509536322097752}
   - component: {fileID: 766258144261310252}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 2112353703935745861}
   - component: {fileID: 5445552744002902958}
   - component: {fileID: 8543086905061074405}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -375,7 +375,7 @@ GameObject:
   - component: {fileID: 6683562346921946968}
   - component: {fileID: 7866992923853910959}
   - component: {fileID: 5624122023757892632}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}

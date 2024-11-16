@@ -37,4 +37,17 @@ public class Survivor : NPC, IDamageable
     {
         RB.position = Vector2.MoveTowards(transform.position, door.transform.position, Speed * Time.fixedDeltaTime);
     }
+
+    public override void Damage(float Damage)
+    {
+        base.Damage(Damage);
+        StartCoroutine(SpeedDrop());
+    }
+
+    IEnumerator SpeedDrop()
+    {
+        Speed = Speed / 2f;
+        yield return new WaitForSeconds(1f);
+        Speed = Speed * 2f;
+    }
 }

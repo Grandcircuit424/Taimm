@@ -66,7 +66,7 @@ public class Zombie : Enemy, IDamageable
 
     IEnumerator Attacking(Collider2D[] Targets)
     {
-        if (Targets == null) yield return null; 
+        if (Targets == null) yield return null;
         foreach (Collider2D target in Targets)
         {
             if (target == EnemysTarget.GetComponent<Collider2D>())
@@ -76,7 +76,9 @@ public class Zombie : Enemy, IDamageable
                 {
                     Attacked = true;
                     damageable.Damage(damage);
+                    Speed = Speed / 2f;
                     yield return new WaitForSeconds(AttackSpeed);
+                    Speed = Speed * 2f;
                     Attacked = false;
                 }
                 break;

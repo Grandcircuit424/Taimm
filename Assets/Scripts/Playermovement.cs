@@ -26,12 +26,13 @@ public class Playermovement : MonoBehaviour
     void Update()
     {
         MovementDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-
+        RB.rotation = 0;
         mousePos = Camera.ScreenToWorldPoint(Input.mousePosition);
     }
 
     void FixedUpdate()
     {
+        
         RB.MovePosition(RB.position + MovementDirection * Speed * Time.fixedDeltaTime);
 
         Vector2 lookdir = mousePos - RB.position;
