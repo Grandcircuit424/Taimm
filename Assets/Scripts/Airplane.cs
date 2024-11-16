@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -16,6 +17,12 @@ public class Airplane : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        GameManager.onGameStateChange += GameManagerOnStateChange;
+    }
+
+    private void GameManagerOnStateChange(GameManager.GameState state)
+    {
+        if (state == GameManager.GameState.SetUp) HealPlane();
     }
 
     public void DamagePlane(float Damage)

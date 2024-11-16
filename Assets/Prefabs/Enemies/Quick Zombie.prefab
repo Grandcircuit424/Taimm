@@ -100,16 +100,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88313a2db00541e4fb52e40e014faf1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 5
-  Health: 5
-  Speed: 5
-  damage: 3
-  AggressionLevel: 50
+  MaxHealth: 10
+  Health: 10
+  Speed: 6
   HealthBar: {fileID: 766258144261310252}
   HealthMeter: {fileID: 5624122023757892632}
   Target: {fileID: 5743061465545153854}
   SpawnWeight: 0.25
   SpawnPoint: 2
+  MoneyEarned: 3
+  damage: 3
+  AggressionLevel: 50
+  AttackSpeed: 1
   RB: {fileID: 6544441479227927849}
   Collider: {fileID: 5354087405409129017}
 --- !u!50 &6544441479227927849

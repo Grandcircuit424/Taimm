@@ -13,6 +13,14 @@ public class Zombie : Enemy, IDamageable
     [SerializeField]
     int MoneyEarned;
 
+    [SerializeReference]
+    protected float damage;
+    [SerializeReference]
+    protected float AggressionLevel;
+    [SerializeReference]
+    protected float AttackSpeed;
+
+
     [SerializeField]
     Rigidbody2D RB;
 
@@ -68,7 +76,7 @@ public class Zombie : Enemy, IDamageable
                 {
                     Attacked = true;
                     damageable.Damage(damage);
-                    yield return new WaitForSeconds(1f);
+                    yield return new WaitForSeconds(AttackSpeed);
                     Attacked = false;
                 }
                 break;
@@ -121,6 +129,6 @@ public class Zombie : Enemy, IDamageable
     public override void Damage(float Damage)
     {
         base.Damage(Damage);
-
+        if (Health <= 0) PlayerStats.Instance.GiveMoney(MoneyEarned);
     }
 }

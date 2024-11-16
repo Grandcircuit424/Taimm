@@ -15,11 +15,14 @@ public class PlayerStats : MonoBehaviour, IDamageable
     [SerializeField]
     public float BulletDamage;
 
+    [SerializeField]
+    public float ShockWave;
+    [SerializeField]
+    public float Medkits;
+
     private void Awake()
     {
         Instance = this;
-        Money = 100;
-        BulletDamage = 3;
     }
 
     public void Damage(float Damage)
@@ -39,12 +42,39 @@ public class PlayerStats : MonoBehaviour, IDamageable
 
     public void GiveMoney(float GiveMoney)
     {
+        Money += GiveMoney;
+    }
 
+    public void SpentShockwave()
+    {
+        ShockWave -= 1;
+    }
+
+    public void SpentMedkits()
+    {
+        Medkits -= 1;
+    }
+
+
+    public void BuyShockwave()
+    {
+        ShockWave += 1;
+    }
+
+    public void BuyMedkit()
+    {
+        Medkits += 1;
     }
 
     public void Heal()
     {
         health = Maxhealth;
+        UIManager.Instance.ChangeHealthBar(health);
+    }
+
+    public void Heal(float HealthGained)
+    {
+        health = Mathf.Clamp(health + HealthGained, 0 ,Maxhealth);
         UIManager.Instance.ChangeHealthBar(health);
     }
 
@@ -56,6 +86,6 @@ public class PlayerStats : MonoBehaviour, IDamageable
 
     public void IncreaseAmmoDamager()
     {
-        BulletDamage += 3;
+        BulletDamage += 2;
     }
 }

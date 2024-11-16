@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,6 +22,10 @@ public class UIManager : MonoBehaviour
     Image HealthBar;
     [SerializeField]
     Image AirplanesHealthBar;
+    [SerializeField]
+    TextMeshProUGUI ShockWave;
+    [SerializeField]
+    TextMeshProUGUI Medkits;
 
     [SerializeField]
     GameObject ShopMenu;
@@ -35,6 +40,30 @@ public class UIManager : MonoBehaviour
     {
         Instance = this;
         ChangeHealthBar(PlayerStats.Instance.health);
+        GameManager.onGameStateChange += GameManagerOnStateChange;
+        UpdateEquipment();
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.onGameStateChange -= GameManagerOnStateChange;
+    }
+
+    private void GameManagerOnStateChange(GameManager.GameState state)
+    {
+        switch (state) 
+        {
+            case (GameManager.GameState.SetUp):
+                ChangeWaveCounter(GameManager.Instance.Round);
+                ChangeAirplanesHealthBar(Airplane.Instance.Health, Airplane.Instance.MaxHealth);
+                break;
+            case (GameManager.GameState.Intermission):
+                ShopMenuOn();
+                break;
+            case (GameManager.GameState.Lose):
+                GameOver();
+                break;
+        }
     }
 
     public void ChangeWaveCounter(int Wave)
@@ -61,7 +90,7 @@ public class UIManager : MonoBehaviour
 
     public void ChangeHealthBar(float Health)
     {
-        HealthBar.fillAmount = Health / 50f;
+        HealthBar.fillAmount = Health / PlayerStats.Instance.Maxhealth;
     }
 
     public void ChangeAirplanesHealthBar(float CurrentHealth, float MaxHealth)
@@ -73,6 +102,14 @@ public class UIManager : MonoBehaviour
     public void ShopMenuOn()
     {
         ShopMenu.SetActive(true);
+        ShopManager.Instance.RepairText();
+        ShopManager.Instance.CurrencyUpdate();
+    }
+
+    public void UpdateEquipment()
+    {
+        ShockWave.text = PlayerStats.Instance.ShockWave.ToString();
+        Medkits.text = PlayerStats.Instance.Medkits.ToString();
     }
 
     public void ShopMenuOff() 

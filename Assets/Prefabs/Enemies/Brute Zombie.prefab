@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 8591237423382413562}
   - component: {fileID: 2619980334896427240}
   m_Layer: 0
-  m_Name: Zombie
+  m_Name: Brute Zombie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -207,8 +207,8 @@ Transform:
   m_GameObject: {fileID: 2673517172470888036}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.882071, y: -0.41552213, z: 0}
-  m_LocalScale: {x: 0.65, y: 0.65, z: 1}
+  m_LocalPosition: {x: -9.22, y: 0.52, z: 0}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4122403631716637758}
@@ -256,7 +256,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.41411534, g: 0.6226415, b: 0.44874445, a: 1}
+  m_Color: {r: 0.12548949, g: 0.18867922, b: 0.13391478, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -278,18 +278,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88313a2db00541e4fb52e40e014faf1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 15
-  Health: 15
-  Speed: 3
+  MaxHealth: 45
+  Health: 45
+  Speed: 2.5
   HealthBar: {fileID: 777979289879662761}
   HealthMeter: {fileID: 2950814084092540297}
   Target: {fileID: 4614962488491327307}
-  SpawnWeight: 1
-  SpawnPoint: 1
-  MoneyEarned: 2
-  damage: 2
-  AggressionLevel: 50
-  AttackSpeed: 1.5
+  SpawnWeight: 0.15
+  SpawnPoint: 3
+  MoneyEarned: 5
+  damage: 5
+  AggressionLevel: 75
+  AttackSpeed: 3
   RB: {fileID: 8591237423382413562}
   Collider: {fileID: 2619980334896427240}
 --- !u!50 &8591237423382413562

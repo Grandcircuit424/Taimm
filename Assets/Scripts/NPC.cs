@@ -6,22 +6,21 @@ using UnityEngine.UI;
 
 public class NPC : MonoBehaviour, IDamageable
 {
+
     [SerializeReference]
     protected float MaxHealth;
     [SerializeReference]
     protected float Health;
     [SerializeReference]
     protected float Speed;
-    [SerializeReference]
-    protected float damage;
-    [SerializeReference]
-    protected float AggressionLevel;
 
     [Header("HealthBar")]
     [SerializeReference]
     protected Image HealthBar;
     [SerializeReference]
     protected Image HealthMeter;
+
+
     [SerializeReference]
     protected Transform Target;
 

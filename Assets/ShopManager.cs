@@ -5,7 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour
-{
+{ 
+    public static ShopManager Instance;
+
     [SerializeField]
     TextMeshProUGUI RepairPriceText;
     [SerializeField]
@@ -15,13 +17,26 @@ public class ShopManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI CurrencyAmmount;
 
+    [SerializeField]
+    Button ArmorUpgrade;
+
+    [SerializeField]
+    Button WeaponUpgrade;
+
+    [SerializeField]
+    TextMeshProUGUI ArmorUpgradeText;
+
+    [SerializeField]
+    TextMeshProUGUI WeaponUpgradeText;
+
     private void Awake()
     {
         CurrencyUpdate();
+        Instance = this;
     }
 
-    private void OnEnable()
-    {   
+    public void RepairText()
+    {
         if (PlayerStats.Instance.Maxhealth - PlayerStats.Instance.health != 0) 
         {
             RepairB.interactable = true;
@@ -34,7 +49,7 @@ public class ShopManager : MonoBehaviour
         }
     }
 
-    private void CurrencyUpdate()
+    public void CurrencyUpdate()
     {
         CurrencyAmmount.text = "$"+PlayerStats.Instance.Money.ToString();
     }
@@ -62,6 +77,10 @@ public class ShopManager : MonoBehaviour
         {
             PlayerStats.Instance.SpendMoney(50f);
             PlayerStats.Instance.IncreaseHealthAmmount();
+
+            ArmorUpgrade.interactable = false;
+            ArmorUpgradeText.text = "Bought";
+
             UpdateAfterPurchase();
             CurrencyUpdate();
         }
@@ -73,7 +92,35 @@ public class ShopManager : MonoBehaviour
         {
             PlayerStats.Instance.SpendMoney(50f);
             PlayerStats.Instance.IncreaseAmmoDamager();
+
+            WeaponUpgrade.interactable = false;
+            WeaponUpgradeText.text = "Bought";
+
             CurrencyUpdate();
+        }
+    }
+
+    public void BuyShockwave()
+    {
+        if (PlayerStats.Instance.Money >= 30f)
+        {
+            PlayerStats.Instance.SpendMoney(30f);
+            PlayerStats.Instance.BuyShockwave();
+
+            CurrencyUpdate();
+            UIManager.Instance.UpdateEquipment();
+        }
+    }
+
+    public void BuyMedkits()
+    {
+        if (PlayerStats.Instance.Money >= 30f)
+        {
+            PlayerStats.Instance.SpendMoney(30f);
+            PlayerStats.Instance.BuyMedkit();
+
+            CurrencyUpdate();
+            UIManager.Instance.UpdateEquipment();
         }
     }
 }

@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
+    public int Round;
+
     public  GameState State;
 
     public static event Action<GameState> onGameStateChange;
@@ -23,6 +25,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        Round = 1;
     }
 
     private void Start()
@@ -39,10 +42,8 @@ public class GameManager : MonoBehaviour
             case GameState.SetUp:
                 playerMovementScript.enabled = true;
                 shootingScript.enabled = true;
-                Airplane.Instance.HealPlane();
                 break;
             case GameState.Intermission:
-                UIManager.Instance.ShopMenuOn();
                 playerMovementScript.enabled = false;
                 shootingScript.enabled = false;
                 break;
@@ -50,15 +51,14 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.End:
                 StartCoroutine(WaitingForEnd());
-                
                 break;
             case GameState.Lose:
-                UIManager.Instance.GameOver();
                 Time.timeScale = 0f;
                 playerMovementScript.enabled = false;
                 shootingScript.enabled = false;
                 break;
-            
+            case GameState.Win:
+                break;
         }
 
         onGameStateChange?.Invoke(newState);
@@ -70,7 +70,16 @@ public class GameManager : MonoBehaviour
         { 
             yield return new WaitForSeconds(1f);
         }
-        UpdateGameState(GameState.Intermission);
+        
+        
+        if (Round == 10)
+        {
+            UpdateGameState(GameState.Win);
+        } else
+        {
+            UpdateGameState(GameState.Intermission);
+        }
+        Round++;
     }
 
     public enum GameState
@@ -79,6 +88,7 @@ public class GameManager : MonoBehaviour
         Intermission,
         Wave,
         Lose,
-        End
+        End,
+        Win
     }
 }

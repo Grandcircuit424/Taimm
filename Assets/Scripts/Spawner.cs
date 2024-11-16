@@ -26,8 +26,6 @@ public class Spawner : MonoBehaviour
 
     float nextSpawn = 0;
 
-    int Round = 1;
-
     int SpawnWaveLimitor = 1;
 
     [SerializeField]
@@ -58,14 +56,17 @@ public class Spawner : MonoBehaviour
     {
         if(Gamestate == GameManager.GameState.SetUp)
         {
-            int Points = 5 + (5 * Round);
+            int Points = 15 + GradIncrease();
+            Debug.Log(Points);
             SpawnListSetUp(Points);
-            Debug.Log("Round " + Round + ": Points:" + Points);
-            UIManager.Instance.ChangeWaveCounter(Round);
 
-            Round++;
             state = SpawnState.Loaded;
         }
+    }
+
+    private int GradIncrease()
+    {
+        return System.Convert.ToInt32(Mathf.Floor(2.0f*Mathf.Sqrt(GameManager.Instance.Round)));
     }
 
     // Update is called once per frame
@@ -76,9 +77,10 @@ public class Spawner : MonoBehaviour
 
             if (Time.time > nextSpawn)
             {
-                nextSpawn = Time.time + 1f;
+                nextSpawn = Time.time + 1.4f-Mathf.Clamp((GameManager.Instance.Round*.05f), .5f, 999);
                 randX = Random.Range(-20, 20);
-                randY = Random.Range(-10, 10);
+                randY = Random.Range(0, 10);
+                if (Wave[0].tag == "Survivor") randY -= 5;
                 SpawnLocation = new Vector2(randX, gameObject.transform.position.y + randY);
                 NPC SpawnedBeing = Instantiate(Wave[0], SpawnLocation, Quaternion.identity);
                 SpawnedBeing.transform.parent = EnemyFolder.gameObject.transform;
@@ -96,30 +98,29 @@ public class Spawner : MonoBehaviour
     }
 
     void SpawnListSetUp(float PointsToWave)
-    {
-
+    { 
         state = SpawnState.Loading;
         
         float SpawnWeightTotal = 0;
         float PointsLeft = PointsToWave;
 
         List<float> Chances = new List<float>();
+        for (int i = 0; i < SpawnWaveLimitorIncrease.Length; i++)
+            {
+            if (GameManager.Instance.Round == SpawnWaveLimitorIncrease[i])
+                {
+                    SpawnWaveLimitor++;
+                    break;
+                }
+            }
+
 
         //Get a total weight
         for (int i = 0; i < SpawnWaveLimitor; i++)
         {
-            SpawnWeightTotal += Spawnables[0].SpawnWeight;
+            SpawnWeightTotal += Spawnables[i].SpawnWeight;
             Chances.Add(SpawnWeightTotal);
         }
-        for (int i = 0; i < SpawnWaveLimitorIncrease.Length; i++)
-        {
-            if (Round == SpawnWaveLimitorIncrease[i])
-            {
-                SpawnWaveLimitor++;
-                break;
-            }
-        }
-        
         
         //Put enemies in next spawn based on spawn weight.
         while (PointsLeft >= 1)
@@ -144,12 +145,11 @@ public class Spawner : MonoBehaviour
         for (int i = 0; i < 3;)
             {
                 int ranPos = Random.Range(0, Wave.Count);
-                if (Wave[ranPos])
+                if (Wave[ranPos].tag != "survivor")
                 {
                     Wave.Insert(ranPos, survivor);
                     i++;
                 }
             }
-        state = SpawnState.Unloaded;
     }
 }

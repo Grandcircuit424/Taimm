@@ -9,6 +9,7 @@ public class Door : MonoBehaviour
         if (collision.gameObject.tag == "Survivor")
         {
             UIManager.Instance.ChangeSurvivorCounter();
+            PlayerStats.Instance.GiveMoney(5);
             Destroy(collision.gameObject);
         }
     }
