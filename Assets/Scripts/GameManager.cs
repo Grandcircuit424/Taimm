@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        UpdateGameState(GameState.Win);
+        UpdateGameState(GameState.SetUp);
 
     }
 
