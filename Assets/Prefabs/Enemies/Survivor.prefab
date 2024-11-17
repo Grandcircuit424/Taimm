@@ -279,7 +279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 10
   Health: 10
-  Speed: 2
+  Speed: 3
   HealthBar: {fileID: 300652714818552479}
   HealthMeter: {fileID: 3377970703876936367}
   Target: {fileID: 424849616389173792}
